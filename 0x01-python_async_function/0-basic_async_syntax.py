@@ -1,12 +1,21 @@
+
 #!/usr/bin/env python3
-"""Module that contains an asynchronous coroutine to wait for delay input"""
-import random
+"""
+Defines a basic asynchronous routine
+"""
 import asyncio
+import random
 
 
 async def wait_random(max_delay: int = 10) -> float:
-    """Function that takes arg for delay time & has default b/n 0 and 10"""
-
-    rand = random.uniform(0, max_delay)
-    await asyncio.sleep(rand)
-    return rand
+    """
+    An asynchronous coroutine that waits for a random delay
+    between 0 and max_delay (included and float value) seconds
+    Args:
+        max_delay (int): nteger argument with a default value of 10
+    Return:
+        (int or float): the random delay time
+    """
+    delay: float = random.uniform(0, max_delay)
+    await asyncio.sleep(delay)
+    return delay
