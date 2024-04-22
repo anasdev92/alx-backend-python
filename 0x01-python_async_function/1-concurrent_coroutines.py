@@ -1,23 +1,22 @@
-
 #!/usr/bin/env python3
-"""
-Defines concurrent execution function
-"""
-import asyncio
+"""Module that returns the list of all delays"""
 from typing import List
+import asyncio
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    Execute multiple coroutines at the same time with async
-    Args:
-        n (int): number of times to spawn wait_random
-        max_delay (int): delay value to be passed to wait_random
-    Returns:
-        List[float]: list of ordered delays
-    """
-    resolves = await asyncio.gather(
-        *(wait_random(max_delay) for i in range(n)))
-    return sorted(resolves)
+    """Function that returns list of delays in ascending order"""
+
+    delays: List[float] = []
+    all_delays: List[float] = []
+
+    for num in range(n):
+        delays.append(wait_random(max_delay))
+
+    for delay in asyncio.as_completed(delays):
+        res = await delay
+        all_delays.append(res)
+
+    return all_delays
