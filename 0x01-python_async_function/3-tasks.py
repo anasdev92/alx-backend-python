@@ -1,19 +1,25 @@
 
 #!/usr/bin/env python3
+
+""""
+Module with a function that creates a task
 """
-Defines a function that creates an asynchronous task
-"""
-import asyncio
+
+
+from asyncio import Task, create_task
+
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay: int) -> asyncio.Task:
+def task_wait_random(max_delay: int) -> Task:
     """
-    Takes an integer and returns an asyncio task
+    wait for a random number of some seconds
+    and return an asyncio Task
     Args:
-        max_delay (int)
+        max_delay (int): maximum number of seconds
+        to wait
     Returns:
-        task: An asynchronous task
+        returns an asyncio task
     """
-    return asyncio.create_task(wait_random(max_delay))
+    return create_task(wait_random(max_delay))
