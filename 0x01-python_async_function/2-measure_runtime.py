@@ -3,6 +3,7 @@
 """
 Defines runtime of an asynchronous function
 """
+import asyncio.run(wait_n)
 import time
 import asyncio
 
